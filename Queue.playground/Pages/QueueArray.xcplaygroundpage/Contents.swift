@@ -29,12 +29,25 @@ extension QueueArray: CustomStringConvertible {
     }
 }
 
+extension QueueArray {
+    func reversed() -> QueueArray {
+        var queue = self
+        var reversed: [T] = []
+        var array = queue.array
+        while !array.isEmpty {
+            if let element = array.popLast() {
+                reversed.append(element)
+            }
+        }
+        queue.array = reversed
+        return queue
+    }
+}
+
 //example
 var queue = QueueArray<String>()
 queue.enqueue("Ray")
 queue.enqueue("Brian")
 queue.enqueue("Eric")
-queue
-queue.dequeue()
-queue
-queue.peek
+print("original: \(queue)")
+print("reversed: \(queue.reversed())")
